@@ -23,15 +23,14 @@ const data: Array<PacoteType> = [
 function App() {
   const [pacotes, setPacotes] = useState(data);
 
-  function excluirPacote(pacote) {
-    const novoPacotes = [];
-    for (let i = 0; i < pacotes.length; i++) {
-      if (pacotes[i] !== pacote) {
-        novoPacotes.push(pacotes[i]);
-      }
-    }
-    // const novoPacotes = pacotes.filter(p=>p!==pacote);
-    setPacotes(novoPacotes);
+  function excluirPacote(id: string) {
+    // const novoPacotes = [];
+    // for (let i = 0; i < pacotes.length; i++) {
+    //   if (pacotes[i] !== pacote) {
+    //     novoPacotes.push(pacotes[i]);
+    //   }
+    // }
+    setPacotes(pacotes.filter(p => p.id !== id));
   }
 
   return (
@@ -39,10 +38,8 @@ function App() {
       <h2>Pacotes</h2>
       <div className='pacotes'>
         {pacotes.map(p => (
-          <div key={p.id}>
-            <Pacote pacote={p} />
-            <button onClick={() => excluirPacote(p)}>Excluir</button>
-          </div>))}
+          <Pacote pacote={p} key={p.id} acaoExcluir={excluirPacote} />
+        ))}
       </div>
     </section>
   )
