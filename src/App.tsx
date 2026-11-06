@@ -4,6 +4,7 @@ import Pacote from './Pacote'
 import type { PacoteType } from './types'
 import ListagemDePacotes from './ListagemDePacotes'
 import pacoteReducer from './pacoteReducer'
+import { PacotesContext } from './PacoteContext'
 
 const data: Array<PacoteType> = [
   {
@@ -23,13 +24,15 @@ const data: Array<PacoteType> = [
 ]
 
 function App() {
-  const [pacotes, dispacher] = useReducer(pacoteReducer,data);
+  const [pacotes, dispacher] = useReducer(pacoteReducer, data);
 
   return (
-    <section>
-      <h2>Pacotes</h2>
-      <ListagemDePacotes pacotes={pacotes} dispacher={dispacher} />
-    </section>
+    <PacotesContext value={pacotes}>
+      <section>
+        <h2>Pacotes</h2>
+        <ListagemDePacotes dispacher={dispacher} />
+      </section>
+    </PacotesContext>
   )
 }
 
