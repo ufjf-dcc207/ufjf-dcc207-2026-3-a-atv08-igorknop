@@ -4,7 +4,7 @@ import Pacote from './Pacote'
 import type { PacoteType } from './types'
 import ListagemDePacotes from './ListagemDePacotes'
 import pacoteReducer from './pacoteReducer'
-import { PacotesContext } from './PacoteContext'
+import { PacotesContext, PacotesDispacherContext } from './PacoteContext'
 
 const data: Array<PacoteType> = [
   {
@@ -28,10 +28,12 @@ function App() {
 
   return (
     <PacotesContext value={pacotes}>
-      <section>
-        <h2>Pacotes</h2>
-        <ListagemDePacotes dispacher={dispacher} />
-      </section>
+      <PacotesDispacherContext value={dispacher}>
+        <section>
+          <h2>Pacotes</h2>
+          <ListagemDePacotes />
+        </section>
+      </PacotesDispacherContext>
     </PacotesContext>
   )
 }
